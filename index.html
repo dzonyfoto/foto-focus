@@ -70,6 +70,9 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
 /* STEPS */
 .step { display: none; }
 .step.active { display: block; }
+#step3svadba, #step4svadba, #step5svadba { display: none; }
+#step3svadba.active, #step4svadba.active, #step5svadba.active { display: block !important; }
+#step3svadba, #step4svadba, #step5svadba { max-width: 680px; margin: 24px auto; padding: 0 16px 60px; width: 100%; box-sizing: border-box; }
 
 /* BUTTONS */
 .nav-btns { display: flex; gap: 12px; margin-top: 16px; }
@@ -439,7 +442,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
 
 
   <!-- KORAK 3 – SVADBA: Venčanje -->
-  <div class="step" id="step3svadba">
+  <div class="step" id="step3svadba" style="display:none">
     <div class="card">
       <div class="card-title">💍 Vrsta venčanja</div>
       <div class="field">
@@ -458,7 +461,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   </div>
 
   <!-- KORAK 4 – SVADBA: Foto detalji -->
-  <div class="step" id="step4svadba">
+  <div class="step" id="step4svadba" style="display:none">
     <div class="card">
       <div class="card-title">📷 Prodaja fotografija</div>
       <div class="field">
@@ -503,7 +506,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   </div>
 
   <!-- KORAK 5 – SVADBA: Kontakt -->
-  <div class="step" id="step5svadba">
+  <div class="step" id="step5svadba" style="display:none">
     <div class="card">
       <div class="card-title">👤 Vaši podaci</div>
       <div class="field">
@@ -653,13 +656,7 @@ function idi2() {
   const panel = document.getElementById('panel-' + selectedProslava);
   if (panel) panel.style.display = 'block';
   document.querySelectorAll('input[name="usluga"]').forEach(c => { c.checked = false; c.disabled = false; c.closest('.option-item').classList.remove('selected'); c.closest('.option-item').style.opacity = '1'; });
-  document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-  document.getElementById('step2').classList.add('active');
-  document.getElementById('step2').style.display = 'block';
-  const totalSteps = selectedProslava === 'svadba' ? 5 : 3;
-  document.getElementById('progressFill').style.width = (1 / (totalSteps - 1) * 100) + '%';
-  document.getElementById('progressLabel').textContent = 'Korak 2 od ' + totalSteps;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setStep(2);
 }
 
 function idi3() {
@@ -672,15 +669,7 @@ function idi3() {
       return;
     }
     document.getElementById('err-usluge-svadba').style.display = 'none';
-    const el = document.getElementById('step3svadba');
-    console.log('step3svadba element:', el);
-    document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-    el.classList.add('active');
-    el.style.display = 'block';
-    console.log('step3svadba classes:', el.className);
-    document.getElementById('progressFill').style.width = '50%';
-    document.getElementById('progressLabel').textContent = 'Korak 3 od 5';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setStep(3);
     return;
   }
 
@@ -752,26 +741,25 @@ function idi5_svadba() {
 function setStep(n) {
   const totalSteps = selectedProslava === 'svadba' ? 5 : 3;
   
-  // Sakrij sve step divove eksplicitno
-  document.querySelectorAll('.step').forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
+  // Sakrij SVE step divove
+  ['step1','step2','step3','step3svadba','step4svadba','step5svadba'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'none';
+  });
   
-  // Prikaži odgovarajući step
-  let targetEl = null;
+  // Prikaži pravi
+  let targetId = null;
   if (selectedProslava === 'svadba') {
-    if (n === 1) targetEl = document.getElementById('step1');
-    else if (n === 2) targetEl = document.getElementById('step2');
-    else if (n === 3) targetEl = document.getElementById('step3svadba');
-    else if (n === 4) targetEl = document.getElementById('step4svadba');
-    else if (n === 5) targetEl = document.getElementById('step5svadba');
+    const map = {1:'step1', 2:'step2', 3:'step3svadba', 4:'step4svadba', 5:'step5svadba'};
+    targetId = map[n];
   } else {
-    if (n === 1) targetEl = document.getElementById('step1');
-    else if (n === 2) targetEl = document.getElementById('step2');
-    else if (n === 3) targetEl = document.getElementById('step3');
+    const map = {1:'step1', 2:'step2', 3:'step3'};
+    targetId = map[n];
   }
-
-  if (targetEl) {
-    targetEl.classList.add('active');
-    targetEl.style.display = 'block';
+  
+  if (targetId) {
+    const el = document.getElementById(targetId);
+    if (el) el.style.display = 'block';
   }
 
   const pct = ((n - 1) / (totalSteps - 1)) * 100;
