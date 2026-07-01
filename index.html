@@ -7,40 +7,24 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 :root {
-  --green: #2ebd4e;
-  --green-dark: #22a03e;
-  --green-light: #e8f8ec;
-  --gray: #8c8c8c;
-  --gray-dark: #3a3a3a;
-  --gray-light: #f5f5f5;
-  --white: #ffffff;
-  --border: #e0e0e0;
-  --error: #d93025;
+  --green: #2ebd4e; --green-dark: #22a03e; --green-light: #e8f8ec;
+  --gray: #8c8c8c; --gray-dark: #3a3a3a; --gray-light: #f5f5f5;
+  --white: #ffffff; --border: #e0e0e0; --error: #d93025;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Inter', sans-serif; background: #f0f0f0; color: var(--gray-dark); min-height: 100vh; }
-
-/* HEADER */
 .header { background: var(--white); border-bottom: 3px solid var(--green); padding: 14px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .header img { height: 44px; }
 .header h1 { font-size: 20px; font-weight: 700; color: var(--gray-dark); }
 .header p { font-size: 12px; color: var(--gray); margin-top: 2px; }
-
-/* PROGRESS */
 .progress-wrap { background: var(--white); padding: 8px 24px; border-bottom: 1px solid var(--border); }
 .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--green); border-radius: 2px; transition: width 0.4s ease; }
 .progress-label { font-size: 11px; color: var(--gray); margin-top: 4px; text-align: right; }
-
-/* MAIN */
-.main { max-width: 680px; margin: 24px auto; padding: 0 16px 60px; }
-
-/* CARD */
+.wrap { max-width: 680px; margin: 24px auto; padding: 0 16px 60px; }
 .card { background: var(--white); border-radius: 12px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); margin-bottom: 14px; }
 .card-title { font-size: 12px; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
 .card-title::after { content: ''; flex: 1; height: 1px; background: var(--green-light); }
-
-/* FIELDS */
 .field { margin-bottom: 18px; }
 .field:last-child { margin-bottom: 0; }
 label.field-label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
@@ -51,54 +35,31 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="date"], 
 }
 input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px rgba(46,189,78,0.1); }
 .error-msg { font-size: 12px; color: var(--error); margin-top: 5px; display: none; }
-
-/* PROSLAVA GRID */
 .proslava-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 10px; }
 .proslava-btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 16px 8px; border: 2px solid var(--border); border-radius: 10px; cursor: pointer; transition: all 0.2s; background: var(--white); text-align: center; }
 .proslava-btn:hover, .proslava-btn.selected { border-color: var(--green); background: var(--green-light); }
 .proslava-btn .icon { font-size: 26px; }
 .proslava-btn .naziv { font-size: 13px; font-weight: 600; color: var(--gray-dark); }
-
-/* OPTIONS */
 .options-list { display: flex; flex-direction: column; gap: 8px; }
 .option-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px; cursor: pointer; transition: all 0.2s; }
 .option-item:hover { border-color: var(--green); background: var(--green-light); }
 .option-item.selected { border-color: var(--green); background: var(--green-light); }
 .option-item input[type="checkbox"], .option-item input[type="radio"] { width: 18px; height: 18px; min-width: 18px; accent-color: var(--green); cursor: pointer; }
 .option-label { font-size: 14px; color: var(--gray-dark); }
-
-/* STEPS */
-.step { display: none; }
-.step.active { display: block; }
-#step3svadba, #step4svadba, #step5svadba { display: none; }
-#step3svadba.active, #step4svadba.active, #step5svadba.active { display: block !important; }
-#step3svadba, #step4svadba, #step5svadba { max-width: 680px; margin: 24px auto; padding: 0 16px 60px; width: 100%; box-sizing: border-box; }
-
-/* BUTTONS */
 .nav-btns { display: flex; gap: 12px; margin-top: 16px; }
 .btn { padding: 12px 24px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
 .btn-back { background: var(--gray-light); color: var(--gray-dark); border: 1.5px solid var(--border); }
-.btn-back:hover { background: var(--border); }
 .btn-next { background: var(--green); color: white; flex: 1; }
 .btn-next:hover { background: var(--green-dark); }
-.btn-submit { background: var(--green); color: white; width: 100%; padding: 14px; font-size: 15px; border-radius: 10px; border: none; font-family: 'Inter', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 12px; }
-.btn-submit:hover { background: var(--green-dark); }
-
-/* NOTICE */
 .notice { background: var(--green-light); border-left: 3px solid var(--green); border-radius: 6px; padding: 10px 14px; font-size: 13px; color: var(--gray-dark); margin-bottom: 14px; }
-
-/* LOADING & SUCCESS */
 .loading { display: none; text-align: center; padding: 40px 20px; }
 .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--green); border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
 @keyframes spin { to { transform: rotate(360deg); } }
 .success-screen { display: none; text-align: center; padding: 50px 20px; background: var(--white); border-radius: 12px; }
 .success-screen .icon { font-size: 60px; margin-bottom: 16px; }
-.success-screen h2 { font-size: 22px; font-weight: 700; color: var(--gray-dark); margin-bottom: 10px; }
-.success-screen p { font-size: 14px; color: var(--gray); line-height: 1.7; }
-
-/* FOOTER */
+.success-screen h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
 .footer { text-align: center; padding: 20px; font-size: 11px; color: #bbb; }
-
+.panel { display: none; }
 @media (max-width: 480px) {
   .proslava-grid { grid-template-columns: repeat(2, 1fr); }
   .card { padding: 18px 14px; }
@@ -109,10 +70,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
 
 <div class="header">
   <img src="https://i.imgur.com/KAo8o2W.png" alt="Foto Focus" onerror="this.style.display='none'">
-  <div>
-    <h1>Foto Focus</h1>
-    <p>Upit za fotografisanje proslave</p>
-  </div>
+  <div><h1>Foto Focus</h1><p>Upit za fotografisanje proslave</p></div>
 </div>
 
 <div class="progress-wrap">
@@ -120,439 +78,351 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   <div class="progress-label" id="progressLabel">Korak 1 od 3</div>
 </div>
 
-<div class="main">
+<!-- SVE STRANICE SU DIREKTNO U BODY, SAMO WRAP KLASA DAJE IZGLED -->
 
-  <!-- KORAK 1 -->
-  <div class="step active" id="step1">
-    <div class="card">
-      <div class="card-title">📅 Vrsta proslave</div>
-      <div class="field">
-        <label class="field-label">Izaberite vrstu proslave <span class="req">*</span></label>
-        <div class="proslava-grid">
-          <div class="proslava-btn" onclick="selectProslava('krstenje', this)"><div class="icon">⛪</div><div class="naziv">Krštenje</div></div>
-          <div class="proslava-btn" onclick="selectProslava('vencanje', this)"><div class="icon">💍</div><div class="naziv">Venčanje</div></div>
-          <div class="proslava-btn" onclick="selectProslava('rodjendan1', this)"><div class="icon">🎂</div><div class="naziv">1. Rođendan</div></div>
-          <div class="proslava-btn" onclick="selectProslava('krstenje_rodjendan', this)"><div class="icon">⛪🎂</div><div class="naziv">Krštenje + 1. Rođendan</div></div>
-          <div class="proslava-btn" onclick="selectProslava('rodjendan18', this)"><div class="icon">🎉</div><div class="naziv">18. Rođendan</div></div>
-          <div class="proslava-btn" onclick="selectProslava('matura', this)"><div class="icon">🎓</div><div class="naziv">Matura</div></div>
-          <div class="proslava-btn" onclick="selectProslava('sesn_maturanti', this)"><div class="icon">📸</div><div class="naziv">Fotografisanje maturanata</div></div>
-          <div class="proslava-btn" onclick="selectProslava('svadba', this)"><div class="icon">💒</div><div class="naziv">Svadba</div></div>
-        </div>
-        <div class="error-msg" id="err-proslava">Molimo izaberite vrstu proslave.</div>
+<!-- STRANICA 1 -->
+<div class="wrap" id="stranica1">
+  <div class="card">
+    <div class="card-title">📅 Vrsta proslave</div>
+    <div class="field">
+      <label class="field-label">Izaberite vrstu proslave <span class="req">*</span></label>
+      <div class="proslava-grid">
+        <div class="proslava-btn" onclick="selectProslava('krstenje',this)"><div class="icon">⛪</div><div class="naziv">Krštenje</div></div>
+        <div class="proslava-btn" onclick="selectProslava('vencanje',this)"><div class="icon">💍</div><div class="naziv">Venčanje</div></div>
+        <div class="proslava-btn" onclick="selectProslava('rodjendan1',this)"><div class="icon">🎂</div><div class="naziv">1. Rođendan</div></div>
+        <div class="proslava-btn" onclick="selectProslava('krstenje_rodjendan',this)"><div class="icon">⛪🎂</div><div class="naziv">Krštenje + 1. Rođendan</div></div>
+        <div class="proslava-btn" onclick="selectProslava('rodjendan18',this)"><div class="icon">🎉</div><div class="naziv">18. Rođendan</div></div>
+        <div class="proslava-btn" onclick="selectProslava('matura',this)"><div class="icon">🎓</div><div class="naziv">Matura</div></div>
+        <div class="proslava-btn" onclick="selectProslava('sesn_maturanti',this)"><div class="icon">📸</div><div class="naziv">Fotografisanje maturanata</div></div>
+        <div class="proslava-btn" onclick="selectProslava('svadba',this)"><div class="icon">💒</div><div class="naziv">Svadba</div></div>
       </div>
-    </div>
-
-    <div class="card">
-      <div class="card-title">📆 Datum</div>
-      <div class="field">
-        <label class="field-label" for="datum">Datum proslave <span class="req">*</span></label>
-        <input type="date" id="datum">
-        <div class="error-msg" id="err-datum">Molimo unesite datum proslave.</div>
-      </div>
-    </div>
-
-    <div class="nav-btns">
-      <button class="btn btn-next" onclick="idi2()">Nastavi →</button>
+      <div class="error-msg" id="err-proslava">Molimo izaberite vrstu proslave.</div>
     </div>
   </div>
-
-  <!-- KORAK 2 -->
-  <div class="step" id="step2">
-
-    <!-- KRSTENJE -->
-    <div id="panel-krstenje" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – Krštenje</div>
-        <div class="field">
-          <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_krstenje"><span class="option-label">Fotografisanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_krstenje"><span class="option-label">Video snimanje</span></label>
-            <label class="option-item" id="opt-sesn-krstenje"><input type="checkbox" name="usluga" value="sesn_krstenje" onchange="toggleLokacija('krstenje', this.checked)"><span class="option-label">Foto sesija</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-krstenje">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-        <div class="field" id="lokacija-krstenje" style="display:none">
-          <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="banovina"><span class="option-label">Banovina</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="cair"><span class="option-label">Čair</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_krstenje" value="van_nisa"><span class="option-label">Van Niša</span></label>
-          </div>
-          <div class="error-msg" id="err-lokacija-krstenje">Molimo izaberite lokaciju foto sesije.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- VENCANJE -->
-    <div id="panel-vencanje" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – Venčanje</div>
-        <div class="field">
-          <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_vencanje"><span class="option-label">Fotografisanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_vencanje"><span class="option-label">Video snimanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="sesn_vencanje" onchange="toggleLokacija('vencanje', this.checked)"><span class="option-label">Foto sesija</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-vencanje">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-        <div class="field" id="lokacija-vencanje" style="display:none">
-          <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="banovina"><span class="option-label">Banovina</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="cair"><span class="option-label">Čair</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_vencanje" value="van_nisa"><span class="option-label">Van Niša</span></label>
-          </div>
-          <div class="error-msg" id="err-lokacija-vencanje">Molimo izaberite lokaciju foto sesije.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RODJENDAN 1 -->
-    <div id="panel-rodjendan1" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – 1. Rođendan</div>
-        <div class="field">
-          <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_rodjendan1"><span class="option-label">Fotografisanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_rodjendan1"><span class="option-label">Video snimanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan1" onchange="toggleLokacija('rodjendan1', this.checked)"><span class="option-label">Foto sesija</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-rodjendan1">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-        <div class="field" id="lokacija-rodjendan1" style="display:none">
-          <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="banovina"><span class="option-label">Banovina</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="cair"><span class="option-label">Čair</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan1" value="van_nisa"><span class="option-label">Van Niša</span></label>
-          </div>
-          <div class="error-msg" id="err-lokacija-rodjendan1">Molimo izaberite lokaciju foto sesije.</div>
-        </div>
-        <div class="field">
-          <label class="field-label">Da li želite prodaju fotografija gostima na dan proslave?</label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="prodaja_rodjendan1" value="da"><span class="option-label">Da</span></label>
-            <label class="option-item"><input type="radio" name="prodaja_rodjendan1" value="ne" onchange="showProdajaNapomena('rodjendan1')"><span class="option-label">Ne <span id="napomena-prodaja-rodjendan1" style="color:#aaa; font-size:12px; display:none;">(utiče na povećanje cene)</span></span></label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- KRSTENJE + RODJENDAN -->
-    <div id="panel-krstenje_rodjendan" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – Krštenje + 1. Rođendan</div>
-        <div class="field">
-          <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_kr"><span class="option-label">Fotografisanje (krštenje + rođendan)</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_kr"><span class="option-label">Video snimanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="sesn_kr" onchange="toggleLokacija('kr', this.checked)"><span class="option-label">Foto sesija</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-krstenje_rodjendan">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-        <div class="field" id="lokacija-kr" style="display:none">
-          <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="banovina"><span class="option-label">Banovina</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="cair"><span class="option-label">Čair</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_kr" value="van_nisa"><span class="option-label">Van Niša</span></label>
-          </div>
-          <div class="error-msg" id="err-lokacija-kr">Molimo izaberite lokaciju foto sesije.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RODJENDAN 18 -->
-    <div id="panel-rodjendan18" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – 18. Rođendan</div>
-        <div class="field">
-          <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_rodjendan18"><span class="option-label">Fotografisanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_rodjendan18"><span class="option-label">Video snimanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan18" onchange="toggleLokacija('rodjendan18', this.checked)"><span class="option-label">Foto sesija</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-rodjendan18">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-        <div class="field" id="lokacija-rodjendan18" style="display:none">
-          <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="banovina"><span class="option-label">Banovina</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="cair"><span class="option-label">Čair</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_rodjendan18" value="van_nisa"><span class="option-label">Van Niša</span></label>
-          </div>
-          <div class="error-msg" id="err-lokacija-rodjendan18">Molimo izaberite lokaciju foto sesije.</div>
-        </div>
-        <div class="field">
-          <label class="field-label">Da li želite prodaju fotografija gostima na dan proslave?</label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="prodaja_rodjendan18" value="da"><span class="option-label">Da</span></label>
-            <label class="option-item"><input type="radio" name="prodaja_rodjendan18" value="ne" onchange="showProdajaNapomena('rodjendan18')"><span class="option-label">Ne <span id="napomena-prodaja-rodjendan18" style="color:#aaa; font-size:12px; display:none;">(utiče na povećanje cene)</span></span></label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- MATURA -->
-    <div id="panel-matura" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – Matura</div>
-        <div class="notice">Cena za fotografisanje mature se obračunava po gostu.</div>
-        <div class="field">
-          <label class="field-label" for="broj-gostiju">Okvirni broj gostiju <span class="req">*</span></label>
-          <input type="number" id="broj-gostiju" min="1" placeholder="npr. 120">
-          <div class="error-msg" id="err-gosti">Molimo unesite broj gostiju.</div>
-        </div>
-        <div class="field">
-          <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_matura" id="cb-foto-matura" onchange="maturaSyncCheck(this)"><span class="option-label">Fotografisanje mature</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_matura" id="cb-video-matura" onchange="maturaSyncCheck(this)"><span class="option-label">Video snimanje mature</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_video_matura" id="cb-fotovideo-matura" onchange="maturaSyncCheck(this)"><span class="option-label">Foto + Video mature (paket)</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-matura">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FOTOGRAFISANJE MATURANATA -->
-    <div id="panel-sesn_maturanti" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Fotografisanje maturanata</div>
-        <div class="notice">Individualno fotografisanje maturanta na izabranoj lokaciji.</div>
-        <div class="field">
-          <label class="field-label">Izaberite lokaciju <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="banovina"><span class="option-label">Banovina</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="cair"><span class="option-label">Čair</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-            <label class="option-item"><input type="radio" name="lokacija_sesn_maturanti" value="van_nisa"><span class="option-label">Van Niša</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-sesn_maturanti">Molimo izaberite lokaciju.</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SVADBA -->
-    <div id="panel-svadba" class="usluge-panel" style="display:none">
-      <div class="card">
-        <div class="card-title">📸 Usluge – Svadba</div>
-        <div class="notice">Fotografisanje proslave u restoranu je uključeno u osnovnu cenu.</div>
-        <div class="field">
-          <label class="field-label">Izaberite usluge <span class="req">*</span></label>
-          <div class="options-list">
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_svadba_extra" id="cb-foto-svadba" onchange="svadbaSync(this)"><span class="option-label">Fotografisanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="video_svadba" id="cb-video-svadba" onchange="svadbaSync(this)"><span class="option-label">Video snimanje</span></label>
-            <label class="option-item"><input type="checkbox" name="usluga" value="foto_video_svadba" id="cb-fotovideo-svadba" onchange="svadbaSync(this)"><span class="option-label">Foto + Video paket</span></label>
-          </div>
-          <div class="error-msg" id="err-usluge-svadba">Molimo izaberite bar jednu uslugu.</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-btns">
-      <button class="btn btn-back" onclick="idi1()">← Nazad</button>
-      <button class="btn btn-next" onclick="idi3()">Nastavi →</button>
+  <div class="card">
+    <div class="card-title">📆 Datum</div>
+    <div class="field">
+      <label class="field-label" for="datum">Datum proslave <span class="req">*</span></label>
+      <input type="date" id="datum">
+      <div class="error-msg" id="err-datum">Molimo unesite datum proslave.</div>
     </div>
   </div>
+  <div class="nav-btns"><button class="btn btn-next" onclick="idi2()">Nastavi →</button></div>
+</div>
 
-  <!-- KORAK 3 -->
-  <div class="step" id="step3">
+<!-- STRANICA 2 -->
+<div class="wrap" id="stranica2" style="display:none">
+
+  <!-- KRSTENJE -->
+  <div id="panel-krstenje" class="panel">
     <div class="card">
-      <div class="card-title">👤 Vaši podaci</div>
+      <div class="card-title">📸 Usluge – Krštenje</div>
       <div class="field">
-        <label class="field-label" for="ime">Ime i prezime <span class="req">*</span></label>
-        <input type="text" id="ime" placeholder="npr. Marko Marković">
-        <div class="error-msg" id="err-ime">Molimo unesite ime i prezime.</div>
-      </div>
-      <div class="field">
-        <label class="field-label" for="telefon">Broj telefona <span class="req">*</span></label>
-        <input type="tel" id="telefon" placeholder="npr. 064 123 4567">
-        <div class="error-msg" id="err-telefon">Molimo unesite broj telefona.</div>
-      </div>
-      <div class="field">
-        <label class="field-label" for="email">Email adresa <span class="req">*</span></label>
-        <input type="email" id="email" placeholder="npr. marko@email.com">
-        <div class="error-msg" id="err-email">Molimo unesite ispravnu email adresu.</div>
-      </div>
-    </div>
-
-    <div class="card" style="text-align:center; padding:28px;">
-      <div style="font-size:40px; margin-bottom:12px;">📩</div>
-      <div style="font-size:15px; font-weight:600; margin-bottom:8px;">Ponudu ćete dobiti na email</div>
-      <div style="font-size:13px; color:var(--gray); line-height:1.6;">Nakon slanja, na Vašu email adresu stiže detaljna ponuda sa specifikacijom troškova i mogućnošću potvrde termina.</div>
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- KORAK 3 – SVADBA: Venčanje -->
-  <div class="step" id="step3svadba" style="display:none">
-    <div class="card">
-      <div class="card-title">💍 Vrsta venčanja</div>
-      <div class="field">
-        <label class="field-label">Izaberite vrstu venčanja</label>
+        <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
         <div class="options-list">
-          <label class="option-item"><input type="checkbox" name="vencanje_tip" value="crkveno"><span class="option-label">Crkveno venčanje</span></label>
-          <label class="option-item"><input type="checkbox" name="vencanje_tip" value="gradjansko_van"><span class="option-label">Građansko venčanje van restorana</span></label>
-          <label class="option-item"><input type="checkbox" name="vencanje_tip" value="gradjansko_restoran"><span class="option-label">Građansko venčanje u restoranu</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_krstenje"><span class="option-label">Fotografisanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_krstenje"><span class="option-label">Video snimanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_krstenje" onchange="toggleLokacija('krstenje',this.checked)"><span class="option-label">Foto sesija</span></label>
         </div>
+        <div class="error-msg" id="err-usluge-krstenje">Molimo izaberite bar jednu uslugu.</div>
       </div>
-    </div>
-    <div class="nav-btns">
-      <button class="btn btn-back" onclick="setStep(2)">← Nazad</button>
-      <button class="btn btn-next" onclick="idi4_svadba()">Nastavi →</button>
+      <div class="field" id="lokacija-krstenje" style="display:none">
+        <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
+        <div class="options-list" id="lok-lista-krstenje"></div>
+        <div class="error-msg" id="err-lokacija-krstenje">Molimo izaberite lokaciju.</div>
+      </div>
     </div>
   </div>
 
-  <!-- KORAK 4 – SVADBA: Foto detalji -->
-  <div class="step" id="step4svadba" style="display:none">
+  <!-- VENCANJE -->
+  <div id="panel-vencanje" class="panel">
     <div class="card">
-      <div class="card-title">📷 Prodaja fotografija</div>
+      <div class="card-title">📸 Usluge – Venčanje</div>
+      <div class="field">
+        <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
+        <div class="options-list">
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_vencanje"><span class="option-label">Fotografisanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_vencanje"><span class="option-label">Video snimanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_vencanje" onchange="toggleLokacija('vencanje',this.checked)"><span class="option-label">Foto sesija</span></label>
+        </div>
+        <div class="error-msg" id="err-usluge-vencanje">Molimo izaberite bar jednu uslugu.</div>
+      </div>
+      <div class="field" id="lokacija-vencanje" style="display:none">
+        <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
+        <div class="options-list" id="lok-lista-vencanje"></div>
+        <div class="error-msg" id="err-lokacija-vencanje">Molimo izaberite lokaciju.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RODJENDAN 1 -->
+  <div id="panel-rodjendan1" class="panel">
+    <div class="card">
+      <div class="card-title">📸 Usluge – 1. Rođendan</div>
+      <div class="field">
+        <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
+        <div class="options-list">
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_rodjendan1"><span class="option-label">Fotografisanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_rodjendan1"><span class="option-label">Video snimanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan1" onchange="toggleLokacija('rodjendan1',this.checked)"><span class="option-label">Foto sesija</span></label>
+        </div>
+        <div class="error-msg" id="err-usluge-rodjendan1">Molimo izaberite bar jednu uslugu.</div>
+      </div>
+      <div class="field" id="lokacija-rodjendan1" style="display:none">
+        <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
+        <div class="options-list" id="lok-lista-rodjendan1"></div>
+        <div class="error-msg" id="err-lokacija-rodjendan1">Molimo izaberite lokaciju.</div>
+      </div>
       <div class="field">
         <label class="field-label">Da li želite prodaju fotografija gostima na dan proslave?</label>
         <div class="options-list">
-          <label class="option-item"><input type="radio" name="prodaja_svadba" value="da"><span class="option-label">Da</span></label>
-          <label class="option-item"><input type="radio" name="prodaja_svadba" value="ne" onchange="showProdajaNapomena('svadba')"><span class="option-label">Ne <span id="napomena-prodaja-svadba" style="color:#aaa;font-size:12px;display:none;">(utiče na povećanje cene)</span></span></label>
+          <label class="option-item"><input type="radio" name="prodaja_rodjendan1" value="da"><span class="option-label">Da</span></label>
+          <label class="option-item"><input type="radio" name="prodaja_rodjendan1" value="ne" onchange="showNapomena('rodjendan1')"><span class="option-label">Ne <span id="napomena-prodaja-rodjendan1" style="color:#aaa;font-size:12px;display:none;">(utiče na povećanje cene)</span></span></label>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- KRSTENJE + RODJENDAN -->
+  <div id="panel-krstenje_rodjendan" class="panel">
     <div class="card">
-      <div class="card-title">📸 Foto sesija</div>
+      <div class="card-title">📸 Usluge – Krštenje + 1. Rođendan</div>
       <div class="field">
-        <label class="field-label">Da li želite foto sesiju? <span class="req">*</span></label>
+        <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
         <div class="options-list">
-          <label class="option-item"><input type="radio" name="sesn_svadba" value="ne"><span class="option-label">Ne želim foto sesiju</span></label>
-          <label class="option-item"><input type="radio" name="sesn_svadba" value="isti_dan" onchange="toggleLokacija('svadba', false)"><span class="option-label">Da – istog dana (besplatno)</span></label>
-          <label class="option-item"><input type="radio" name="sesn_svadba" value="drugi_dan" onchange="toggleLokacija('svadba', true)"><span class="option-label">Da – drugog dana</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_kr"><span class="option-label">Fotografisanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_kr"><span class="option-label">Video snimanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_kr" onchange="toggleLokacija('kr',this.checked)"><span class="option-label">Foto sesija</span></label>
         </div>
-        <div class="error-msg" id="err-sesn-svadba">Molimo izaberite opciju za foto sesiju.</div>
+        <div class="error-msg" id="err-usluge-krstenje_rodjendan">Molimo izaberite bar jednu uslugu.</div>
       </div>
-      <div class="field" id="lokacija-svadba" style="display:none">
+      <div class="field" id="lokacija-kr" style="display:none">
         <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
-        <div class="options-list">
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="kod_kuce"><span class="option-label">Kod mene kući</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="tvrdjava"><span class="option-label">Tvrđava</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="beogradska_kapija"><span class="option-label">Beogradska kapija</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="banovina"><span class="option-label">Banovina</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="cair"><span class="option-label">Čair</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="bulevar_parcic"><span class="option-label">Bulevar – Parkić</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="niska_banja"><span class="option-label">Niška Banja</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="drugo_nis"><span class="option-label">Druga lokacija u Nišu</span></label>
-          <label class="option-item"><input type="radio" name="lokacija_sesn_svadba" value="van_nisa"><span class="option-label">Van Niša</span></label>
-        </div>
-        <div class="error-msg" id="err-lokacija-svadba">Molimo izaberite lokaciju foto sesije.</div>
+        <div class="options-list" id="lok-lista-kr"></div>
+        <div class="error-msg" id="err-lokacija-kr">Molimo izaberite lokaciju.</div>
       </div>
-    </div>
-    <div class="nav-btns">
-      <button class="btn btn-back" onclick="setStep(3)">← Nazad</button>
-      <button class="btn btn-next" onclick="idi5_svadba()">Nastavi →</button>
     </div>
   </div>
 
-  <!-- KORAK 5 – SVADBA: Kontakt -->
-  <div class="step" id="step5svadba" style="display:none">
+  <!-- RODJENDAN 18 -->
+  <div id="panel-rodjendan18" class="panel">
     <div class="card">
-      <div class="card-title">👤 Vaši podaci</div>
+      <div class="card-title">📸 Usluge – 18. Rođendan</div>
       <div class="field">
-        <label class="field-label" for="ime5">Ime i prezime <span class="req">*</span></label>
-        <input type="text" id="ime5" placeholder="npr. Marko Marković">
-        <div class="error-msg" id="err-ime5">Molimo unesite ime i prezime.</div>
+        <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
+        <div class="options-list">
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_rodjendan18"><span class="option-label">Fotografisanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_rodjendan18"><span class="option-label">Video snimanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan18" onchange="toggleLokacija('rodjendan18',this.checked)"><span class="option-label">Foto sesija</span></label>
+        </div>
+        <div class="error-msg" id="err-usluge-rodjendan18">Molimo izaberite bar jednu uslugu.</div>
+      </div>
+      <div class="field" id="lokacija-rodjendan18" style="display:none">
+        <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
+        <div class="options-list" id="lok-lista-rodjendan18"></div>
+        <div class="error-msg" id="err-lokacija-rodjendan18">Molimo izaberite lokaciju.</div>
       </div>
       <div class="field">
-        <label class="field-label" for="telefon5">Broj telefona <span class="req">*</span></label>
-        <input type="tel" id="telefon5" placeholder="npr. 064 123 4567">
-        <div class="error-msg" id="err-telefon5">Molimo unesite broj telefona.</div>
+        <label class="field-label">Da li želite prodaju fotografija gostima na dan proslave?</label>
+        <div class="options-list">
+          <label class="option-item"><input type="radio" name="prodaja_rodjendan18" value="da"><span class="option-label">Da</span></label>
+          <label class="option-item"><input type="radio" name="prodaja_rodjendan18" value="ne" onchange="showNapomena('rodjendan18')"><span class="option-label">Ne <span id="napomena-prodaja-rodjendan18" style="color:#aaa;font-size:12px;display:none;">(utiče na povećanje cene)</span></span></label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATURA -->
+  <div id="panel-matura" class="panel">
+    <div class="card">
+      <div class="card-title">📸 Usluge – Matura</div>
+      <div class="notice">Cena za fotografisanje mature se obračunava po gostu.</div>
+      <div class="field">
+        <label class="field-label" for="broj-gostiju">Okvirni broj gostiju <span class="req">*</span></label>
+        <input type="number" id="broj-gostiju" min="1" placeholder="npr. 120">
+        <div class="error-msg" id="err-gosti">Molimo unesite broj gostiju.</div>
       </div>
       <div class="field">
-        <label class="field-label" for="email5">Email adresa <span class="req">*</span></label>
-        <input type="email" id="email5" placeholder="npr. marko@email.com">
-        <div class="error-msg" id="err-email5">Molimo unesite ispravnu email adresu.</div>
+        <label class="field-label">Izaberite željene usluge <span class="req">*</span></label>
+        <div class="options-list">
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_matura" id="cb-foto-matura" onchange="maturaSync(this)"><span class="option-label">Fotografisanje mature</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_matura" id="cb-video-matura" onchange="maturaSync(this)"><span class="option-label">Video snimanje mature</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_video_matura" id="cb-fotovideo-matura" onchange="maturaSync(this)"><span class="option-label">Foto + Video mature (paket)</span></label>
+        </div>
+        <div class="error-msg" id="err-usluge-matura">Molimo izaberite bar jednu uslugu.</div>
       </div>
     </div>
-    <div class="card" style="text-align:center; padding:28px;">
-      <div style="font-size:40px; margin-bottom:12px;">📩</div>
-      <div style="font-size:15px; font-weight:600; margin-bottom:8px;">Ponudu ćete dobiti na email</div>
-      <div style="font-size:13px; color:var(--gray); line-height:1.6;">Nakon slanja stiže detaljna ponuda na email.</div>
+  </div>
+
+  <!-- SESN MATURANTI -->
+  <div id="panel-sesn_maturanti" class="panel">
+    <div class="card">
+      <div class="card-title">📸 Fotografisanje maturanata</div>
+      <div class="notice">Individualno fotografisanje maturanta na izabranoj lokaciji.</div>
+      <div class="field">
+        <label class="field-label">Izaberite lokaciju <span class="req">*</span></label>
+        <div class="options-list" id="lok-lista-sesn_maturanti"></div>
+        <div class="error-msg" id="err-usluge-sesn_maturanti">Molimo izaberite lokaciju.</div>
+      </div>
     </div>
-    <div class="nav-btns">
-      <button class="btn btn-back" onclick="setStep(4)">← Nazad</button>
-      <button class="btn btn-next" onclick="posalji()">📩 Pošalji upit</button>
+  </div>
+
+  <!-- SVADBA -->
+  <div id="panel-svadba" class="panel">
+    <div class="card">
+      <div class="card-title">📸 Usluge – Svadba</div>
+      <div class="notice">Fotografisanje proslave u restoranu je uključeno u osnovnu cenu.</div>
+      <div class="field">
+        <label class="field-label">Izaberite usluge <span class="req">*</span></label>
+        <div class="options-list">
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_svadba_extra" id="cb-foto-svadba" onchange="svadbaSync(this)"><span class="option-label">Fotografisanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="video_svadba" id="cb-video-svadba" onchange="svadbaSync(this)"><span class="option-label">Video snimanje</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="foto_video_svadba" id="cb-fotovideo-svadba" onchange="svadbaSync(this)"><span class="option-label">Foto + Video paket</span></label>
+        </div>
+        <div class="error-msg" id="err-usluge-svadba">Molimo izaberite bar jednu uslugu.</div>
+      </div>
     </div>
-    <p style="font-size:10px; color:#bbb; text-align:center; margin-top:14px; line-height:1.7;">
-      Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama. Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde. Kapara se ne vraća u slučaju otkaza od strane klijenta. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom. Isporuka materijala: do 30 dana. Ovaj dokument je informativnog karaktera.
-    </p>
   </div>
 
-  <!-- LOADING -->
-  <div class="loading" id="loadingScreen">
-    <div class="spinner"></div>
-    <p style="color:var(--gray); font-size:14px;">Šaljemo vaš upit...</p>
+  <div class="nav-btns">
+    <button class="btn btn-back" onclick="idi1()">← Nazad</button>
+    <button class="btn btn-next" onclick="idi3()">Nastavi →</button>
   </div>
+</div>
 
-  <!-- SUCCESS -->
-  <div class="success-screen" id="successScreen">
-    <div class="icon">✅</div>
-    <h2>Upit je uspešno poslat!</h2>
-    <p>Hvala Vam na interesovanju.<br>Uskoro ćete dobiti ponudu na email.<br><br>
-    Za sva pitanja:<br><strong>Nikola – 064 0 57 97 87</strong></p>
+<!-- STRANICA 3 – SVADBA: Venčanje -->
+<div class="wrap" id="stranica3svadba" style="display:none">
+  <div class="card">
+    <div class="card-title">💍 Vrsta venčanja</div>
+    <div class="field">
+      <label class="field-label">Izaberite vrstu venčanja</label>
+      <div class="options-list">
+        <label class="option-item"><input type="checkbox" name="vencanje_tip" value="crkveno"><span class="option-label">Crkveno venčanje</span></label>
+        <label class="option-item"><input type="checkbox" name="vencanje_tip" value="gradjansko_van"><span class="option-label">Građansko venčanje van restorana</span></label>
+        <label class="option-item"><input type="checkbox" name="vencanje_tip" value="gradjansko_restoran"><span class="option-label">Građansko venčanje u restoranu</span></label>
+      </div>
+    </div>
   </div>
+  <div class="nav-btns">
+    <button class="btn btn-back" onclick="prikaziStranicu('stranica2')">← Nazad</button>
+    <button class="btn btn-next" onclick="idi4svadba()">Nastavi →</button>
+  </div>
+</div>
 
+<!-- STRANICA 4 – SVADBA: Foto detalji -->
+<div class="wrap" id="stranica4svadba" style="display:none">
+  <div class="card" id="blok-prodaja-svadba">
+    <div class="card-title">📷 Prodaja fotografija</div>
+    <div class="field">
+      <label class="field-label">Da li želite prodaju fotografija gostima na dan proslave?</label>
+      <div class="options-list">
+        <label class="option-item"><input type="radio" name="prodaja_svadba" value="da"><span class="option-label">Da</span></label>
+        <label class="option-item"><input type="radio" name="prodaja_svadba" value="ne" onchange="showNapomena('svadba')"><span class="option-label">Ne <span id="napomena-prodaja-svadba" style="color:#aaa;font-size:12px;display:none;">(utiče na povećanje cene)</span></span></label>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">📸 Foto sesija</div>
+    <div class="field">
+      <label class="field-label">Da li želite foto sesiju? <span class="req">*</span></label>
+      <div class="options-list">
+        <label class="option-item"><input type="radio" name="sesn_svadba" value="ne"><span class="option-label">Ne želim foto sesiju</span></label>
+        <label class="option-item"><input type="radio" name="sesn_svadba" value="isti_dan" onchange="toggleLokacija('svadba',false)"><span class="option-label">Da – istog dana (besplatno)</span></label>
+        <label class="option-item"><input type="radio" name="sesn_svadba" value="drugi_dan" onchange="toggleLokacija('svadba',true)"><span class="option-label">Da – drugog dana</span></label>
+      </div>
+      <div class="error-msg" id="err-sesn-svadba">Molimo izaberite opciju za foto sesiju.</div>
+    </div>
+    <div class="field" id="lokacija-svadba" style="display:none">
+      <label class="field-label">Lokacija foto sesije <span class="req">*</span></label>
+      <div class="options-list" id="lok-lista-svadba"></div>
+      <div class="error-msg" id="err-lokacija-svadba">Molimo izaberite lokaciju.</div>
+    </div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-back" onclick="prikaziStranicu('stranica3svadba')">← Nazad</button>
+    <button class="btn btn-next" onclick="idi5svadba()">Nastavi →</button>
+  </div>
+</div>
+
+<!-- STRANICA 3 – OSTALE PROSLAVE: Kontakt -->
+<div class="wrap" id="stranica3" style="display:none">
+  <div class="card">
+    <div class="card-title">👤 Vaši podaci</div>
+    <div class="field">
+      <label class="field-label" for="ime">Ime i prezime <span class="req">*</span></label>
+      <input type="text" id="ime" placeholder="npr. Marko Marković">
+      <div class="error-msg" id="err-ime">Molimo unesite ime i prezime.</div>
+    </div>
+    <div class="field">
+      <label class="field-label" for="telefon">Broj telefona <span class="req">*</span></label>
+      <input type="tel" id="telefon" placeholder="npr. 064 123 4567">
+      <div class="error-msg" id="err-telefon">Molimo unesite broj telefona.</div>
+    </div>
+    <div class="field">
+      <label class="field-label" for="email">Email adresa <span class="req">*</span></label>
+      <input type="email" id="email" placeholder="npr. marko@email.com">
+      <div class="error-msg" id="err-email">Molimo unesite ispravnu email adresu.</div>
+    </div>
+  </div>
+  <div class="card" style="text-align:center;padding:28px;">
+    <div style="font-size:40px;margin-bottom:12px;">📩</div>
+    <div style="font-size:15px;font-weight:600;margin-bottom:8px;">Ponudu ćete dobiti na email</div>
+    <div style="font-size:13px;color:var(--gray);line-height:1.6;">Nakon slanja stiže detaljna ponuda sa specifikacijom troškova.</div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-back" onclick="prikaziStranicu('stranica2')">← Nazad</button>
+    <button class="btn btn-next" onclick="posalji()">📩 Pošalji upit</button>
+  </div>
+  <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.7;">
+    Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama. Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde. Kapara se ne vraća u slučaju otkaza od strane klijenta. U slučaju otkaza od strane fotografa, kapara se vraća u celosti. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom ili događajima koji nisu navedeni u upitu. Isporuka materijala: do 30 dana. Link sa fotografijama aktivan 30 dana. Ovaj dokument je informativnog karaktera i ne predstavlja pravno obavezujući ugovor.
+  </p>
+</div>
+
+<!-- STRANICA 5 – SVADBA: Kontakt -->
+<div class="wrap" id="stranica5svadba" style="display:none">
+  <div class="card">
+    <div class="card-title">👤 Vaši podaci</div>
+    <div class="field">
+      <label class="field-label" for="ime5">Ime i prezime <span class="req">*</span></label>
+      <input type="text" id="ime5" placeholder="npr. Marko Marković">
+      <div class="error-msg" id="err-ime5">Molimo unesite ime i prezime.</div>
+    </div>
+    <div class="field">
+      <label class="field-label" for="telefon5">Broj telefona <span class="req">*</span></label>
+      <input type="tel" id="telefon5" placeholder="npr. 064 123 4567">
+      <div class="error-msg" id="err-telefon5">Molimo unesite broj telefona.</div>
+    </div>
+    <div class="field">
+      <label class="field-label" for="email5">Email adresa <span class="req">*</span></label>
+      <input type="email" id="email5" placeholder="npr. marko@email.com">
+      <div class="error-msg" id="err-email5">Molimo unesite ispravnu email adresu.</div>
+    </div>
+  </div>
+  <div class="card" style="text-align:center;padding:28px;">
+    <div style="font-size:40px;margin-bottom:12px;">📩</div>
+    <div style="font-size:15px;font-weight:600;margin-bottom:8px;">Ponudu ćete dobiti na email</div>
+    <div style="font-size:13px;color:var(--gray);line-height:1.6;">Nakon slanja stiže detaljna ponuda.</div>
+  </div>
+  <div class="nav-btns">
+    <button class="btn btn-back" onclick="prikaziStranicu('stranica4svadba')">← Nazad</button>
+    <button class="btn btn-next" onclick="posalji()">📩 Pošalji upit</button>
+  </div>
+  <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.7;">
+    Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama. Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde. Kapara se ne vraća u slučaju otkaza od strane klijenta. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom. Isporuka materijala: do 30 dana. Ovaj dokument je informativnog karaktera.
+  </p>
+</div>
+
+<!-- LOADING -->
+<div class="wrap" id="loadingScreen" style="display:none;text-align:center;padding:40px 20px;">
+  <div class="spinner"></div>
+  <p style="color:var(--gray);font-size:14px;">Šaljemo vaš upit...</p>
+</div>
+
+<!-- SUCCESS -->
+<div class="wrap" id="successScreen" style="display:none;text-align:center;padding:50px 20px;background:white;border-radius:12px;">
+  <div style="font-size:60px;margin-bottom:16px;">✅</div>
+  <h2 style="font-size:22px;font-weight:700;margin-bottom:10px;">Upit je uspešno poslat!</h2>
+  <p style="font-size:14px;color:var(--gray);line-height:1.7;">Hvala Vam na interesovanju.<br>Uskoro ćete dobiti ponudu na email.<br><br>Za sva pitanja:<br><strong>Nikola – 064 0 57 97 87</strong></p>
 </div>
 
 <div class="footer">© 2025 Foto Focus Niš · <a href="https://www.instagram.com/foto.focus.nis/" target="_blank" style="color:var(--green);">@foto.focus.nis</a></div>
@@ -563,21 +433,66 @@ const urlParams = new URLSearchParams(window.location.search);
 const POPUST = parseInt(urlParams.get('p')) || 0;
 let selectedProslava = null;
 
+// Lokacije
+const LOKACIJE = [
+  {v:'kod_kuce', t:'Kod mene kući'},
+  {v:'tvrdjava', t:'Tvrđava'},
+  {v:'beogradska_kapija', t:'Beogradska kapija'},
+  {v:'banovina', t:'Banovina'},
+  {v:'cair', t:'Čair'},
+  {v:'bulevar_parcic', t:'Bulevar – Parkić'},
+  {v:'niska_banja', t:'Niška Banja'},
+  {v:'drugo_nis', t:'Druga lokacija u Nišu'},
+  {v:'van_nisa', t:'Van Niša'}
+];
+
+// Popuni lokacije
+function popuniLokacije() {
+  const ids = ['krstenje','vencanje','rodjendan1','kr','rodjendan18','sesn_maturanti','svadba'];
+  ids.forEach(function(tip) {
+    const el = document.getElementById('lok-lista-' + tip);
+    if (!el) return;
+    const ime = 'lokacija_sesn_' + tip;
+    el.innerHTML = LOKACIJE.map(function(l) {
+      return '<label class="option-item"><input type="radio" name="' + ime + '" value="' + l.v + '"><span class="option-label">' + l.t + '</span></label>';
+    }).join('');
+  });
+}
+
 // Checkbox vizuelni update
 document.addEventListener('change', function(e) {
   if (e.target.type === 'checkbox') {
     e.target.closest('.option-item').classList.toggle('selected', e.target.checked);
   }
   if (e.target.type === 'radio') {
-    document.querySelectorAll('input[name="' + e.target.name + '"]').forEach(r => {
+    document.querySelectorAll('input[name="' + e.target.name + '"]').forEach(function(r) {
       r.closest('.option-item').classList.toggle('selected', r.checked);
     });
   }
 });
 
+// Sve stranice
+const SVE_STRANICE = ['stranica1','stranica2','stranica3','stranica3svadba','stranica4svadba','stranica5svadba','loadingScreen','successScreen'];
+
+function prikaziStranicu(id) {
+  SVE_STRANICE.forEach(function(s) {
+    const el = document.getElementById(s);
+    if (el) el.style.display = 'none';
+  });
+  const target = document.getElementById(id);
+  if (target) target.style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function updateProgress(korak, ukupno) {
+  const pct = ((korak-1)/(ukupno-1))*100;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Korak ' + korak + ' od ' + ukupno;
+}
+
 function selectProslava(tip, el) {
   selectedProslava = tip;
-  document.querySelectorAll('.proslava-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.proslava-btn').forEach(function(b) { b.classList.remove('selected'); });
   el.classList.add('selected');
   document.getElementById('err-proslava').style.display = 'none';
 }
@@ -585,6 +500,11 @@ function selectProslava(tip, el) {
 function toggleLokacija(tip, prikazati) {
   const el = document.getElementById('lokacija-' + tip);
   if (el) el.style.display = prikazati ? 'block' : 'none';
+}
+
+function showNapomena(tip) {
+  const el = document.getElementById('napomena-prodaja-' + tip);
+  if (el) el.style.display = 'inline';
 }
 
 function svadbaSync(el) {
@@ -603,235 +523,145 @@ function svadbaSync(el) {
   }
 }
 
-function showProdajaNapomena(tip) {
-  const el = document.getElementById('napomena-prodaja-' + tip);
-  if (el) el.style.display = 'inline';
-}
-
-function maturaSyncCheck(el) {
+function maturaSync(el) {
   const foto = document.getElementById('cb-foto-matura');
   const video = document.getElementById('cb-video-matura');
   const paket = document.getElementById('cb-fotovideo-matura');
   if (el.value === 'foto_video_matura' && el.checked) {
-    // Paket čekiran — zamrzni zasebne
-    foto.checked = false; foto.closest('.option-item').classList.remove('selected');
-    video.checked = false; video.closest('.option-item').classList.remove('selected');
-    foto.disabled = true; video.disabled = true;
-    foto.closest('.option-item').style.opacity = '0.4';
-    video.closest('.option-item').style.opacity = '0.4';
+    foto.checked = false; foto.closest('.option-item').classList.remove('selected'); foto.disabled = true; foto.closest('.option-item').style.opacity = '0.4';
+    video.checked = false; video.closest('.option-item').classList.remove('selected'); video.disabled = true; video.closest('.option-item').style.opacity = '0.4';
   } else if (el.value === 'foto_video_matura' && !el.checked) {
-    // Paket odčekiran — otključaj zasebne
-    foto.disabled = false; video.disabled = false;
-    foto.closest('.option-item').style.opacity = '1';
-    video.closest('.option-item').style.opacity = '1';
+    foto.disabled = false; foto.closest('.option-item').style.opacity = '1';
+    video.disabled = false; video.closest('.option-item').style.opacity = '1';
   } else if (el.checked) {
-    // Zasebna čekirana — odčekiraj paket
     paket.checked = false; paket.closest('.option-item').classList.remove('selected');
   }
 }
 
-function setStep(n) {
-  document.querySelectorAll('.step').forEach((s, i) => {
-    s.classList.toggle('active', i + 1 === n);
-  });
-  const pct = ((n - 1) / 2) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = 'Korak ' + n + ' od 3';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+function idi1() {
+  prikaziStranicu('stranica1');
+  updateProgress(1, selectedProslava === 'svadba' ? 5 : 3);
 }
 
-function idi1() { setStep(1); }
-
 function idi2() {
-  if (!selectedProslava) {
-    document.getElementById('err-proslava').style.display = 'block';
-    return;
-  }
-  if (!document.getElementById('datum').value) {
-    document.getElementById('err-datum').style.display = 'block';
-    return;
-  }
+  if (!selectedProslava) { document.getElementById('err-proslava').style.display = 'block'; return; }
+  if (!document.getElementById('datum').value) { document.getElementById('err-datum').style.display = 'block'; return; }
   document.getElementById('err-datum').style.display = 'none';
-  document.querySelectorAll('.usluge-panel').forEach(p => p.style.display = 'none');
+  // Reset
+  document.querySelectorAll('.panel').forEach(function(p) { p.style.display = 'none'; });
+  document.querySelectorAll('input[name="usluga"]').forEach(function(c) { c.checked = false; c.disabled = false; c.closest('.option-item').classList.remove('selected'); c.closest('.option-item').style.opacity = '1'; });
   const panel = document.getElementById('panel-' + selectedProslava);
   if (panel) panel.style.display = 'block';
-  document.querySelectorAll('input[name="usluga"]').forEach(c => { c.checked = false; c.disabled = false; c.closest('.option-item').classList.remove('selected'); c.closest('.option-item').style.opacity = '1'; });
-  setStep(2);
+  prikaziStranicu('stranica2');
+  updateProgress(2, selectedProslava === 'svadba' ? 5 : 3);
 }
 
 function idi3() {
-  // SVADBA: Korak 2 → Korak 3
   if (selectedProslava === 'svadba') {
     const usluge = document.querySelectorAll('input[name="usluga"]:checked');
-    console.log('Svadba usluge checked:', usluge.length);
-    if (usluge.length === 0) {
-      document.getElementById('err-usluge-svadba').style.display = 'block';
-      return;
-    }
+    if (usluge.length === 0) { document.getElementById('err-usluge-svadba').style.display = 'block'; return; }
     document.getElementById('err-usluge-svadba').style.display = 'none';
-    setStep(3);
+    prikaziStranicu('stranica3svadba');
+    updateProgress(3, 5);
     return;
   }
-
-  // Ostale proslave
-  if (selectedProslava !== 'sesn_maturanti') {
-    const usluge = document.querySelectorAll('input[name="usluga"]:checked');
-    if (usluge.length === 0) {
-      const errEl = document.getElementById('err-usluge-' + selectedProslava);
-      if (errEl) errEl.style.display = 'block';
-      return;
-    }
+  if (selectedProslava === 'sesn_maturanti') {
+    const lok = document.querySelector('input[name="lokacija_sesn_sesn_maturanti"]:checked');
+    if (!lok) { document.getElementById('err-usluge-sesn_maturanti').style.display = 'block'; return; }
+    document.getElementById('err-usluge-sesn_maturanti').style.display = 'none';
+    prikaziStranicu('stranica3');
+    updateProgress(3, 3);
+    return;
   }
-  document.querySelectorAll('[id^="err-usluge-"]').forEach(e => e.style.display = 'none');
-
+  const usluge = document.querySelectorAll('input[name="usluga"]:checked');
+  if (usluge.length === 0) {
+    const errEl = document.getElementById('err-usluge-' + selectedProslava);
+    if (errEl) errEl.style.display = 'block';
+    return;
+  }
+  document.querySelectorAll('[id^="err-usluge-"]').forEach(function(e) { e.style.display = 'none'; });
   if (selectedProslava === 'matura') {
     const brG = document.getElementById('broj-gostiju').value;
     if (!brG || parseInt(brG) < 1) { document.getElementById('err-gosti').style.display = 'block'; return; }
     document.getElementById('err-gosti').style.display = 'none';
   }
-
-  if (selectedProslava === 'sesn_maturanti') {
-    const lok = document.querySelector('input[name="lokacija_sesn_maturanti"]:checked');
-    if (!lok) { document.getElementById('err-usluge-sesn_maturanti').style.display = 'block'; return; }
-    document.getElementById('err-usluge-sesn_maturanti').style.display = 'none';
-    setStep(3);
-    return;
-  }
-
-  const sesnCheckboxes = ['krstenje','vencanje','rodjendan1','kr','rodjendan18'];
-  for (let tip of sesnCheckboxes) {
-    const sesnCb = document.querySelector('input[value="sesn_' + tip + '"]:checked');
-    if (sesnCb) {
-      const lok = document.querySelector('input[name="lokacija_sesn_' + tip + '"]:checked');
-      if (!lok) { document.getElementById('err-lokacija-' + tip).style.display = 'block'; return; }
+  const sesnTipovi = ['krstenje','vencanje','rodjendan1','kr','rodjendan18'];
+  for (let tip of sesnTipovi) {
+    if (document.querySelector('input[value="sesn_' + tip + '"]:checked')) {
+      if (!document.querySelector('input[name="lokacija_sesn_' + tip + '"]:checked')) {
+        document.getElementById('err-lokacija-' + tip).style.display = 'block'; return;
+      }
       document.getElementById('err-lokacija-' + tip).style.display = 'none';
     }
   }
-
-  setStep(3);
+  prikaziStranicu('stranica3');
+  updateProgress(3, 3);
 }
 
-// SVADBA Korak 3 → Korak 4
-function idi4_svadba() {
-  const imaFoto = document.querySelector('input[value="foto_svadba_extra"]:checked') ||
-                  document.querySelector('input[value="foto_video_svadba"]:checked');
-  // Prikaži/sakrij prodaja blok zavisno od izbora
-  const prodajaBlok = document.getElementById('blok-prodaja-svadba');
-  if (prodajaBlok) prodajaBlok.style.display = imaFoto ? 'block' : 'none';
-  setStep(4);
+function idi4svadba() {
+  const imaFoto = document.querySelector('input[value="foto_svadba_extra"]:checked') || document.querySelector('input[value="foto_video_svadba"]:checked');
+  document.getElementById('blok-prodaja-svadba').style.display = imaFoto ? 'block' : 'none';
+  prikaziStranicu('stranica4svadba');
+  updateProgress(4, 5);
 }
 
-// SVADBA Korak 4 → Korak 5
-function idi5_svadba() {
-  const imaFoto = document.querySelector('input[value="foto_svadba_extra"]:checked') ||
-                  document.querySelector('input[value="foto_video_svadba"]:checked');
+function idi5svadba() {
+  const imaFoto = document.querySelector('input[value="foto_svadba_extra"]:checked') || document.querySelector('input[value="foto_video_svadba"]:checked');
   if (imaFoto) {
     const sesn = document.querySelector('input[name="sesn_svadba"]:checked');
     if (!sesn) { document.getElementById('err-sesn-svadba').style.display = 'block'; return; }
     document.getElementById('err-sesn-svadba').style.display = 'none';
-    if (sesn.value === 'drugi_dan') {
-      const lok = document.querySelector('input[name="lokacija_sesn_svadba"]:checked');
-      if (!lok) { document.getElementById('err-lokacija-svadba').style.display = 'block'; return; }
-      document.getElementById('err-lokacija-svadba').style.display = 'none';
+    if (sesn.value === 'drugi_dan' && !document.querySelector('input[name="lokacija_sesn_svadba"]:checked')) {
+      document.getElementById('err-lokacija-svadba').style.display = 'block'; return;
     }
+    document.getElementById('err-lokacija-svadba').style.display = 'none';
   }
-  setStep(5);
-}
-
-function setStep(n) {
-  const totalSteps = selectedProslava === 'svadba' ? 5 : 3;
-  
-  // Sakrij SVE step divove
-  ['step1','step2','step3','step3svadba','step4svadba','step5svadba'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'none';
-  });
-  
-  // Prikaži pravi
-  let targetId = null;
-  if (selectedProslava === 'svadba') {
-    const map = {1:'step1', 2:'step2', 3:'step3svadba', 4:'step4svadba', 5:'step5svadba'};
-    targetId = map[n];
-  } else {
-    const map = {1:'step1', 2:'step2', 3:'step3'};
-    targetId = map[n];
-  }
-  
-  if (targetId) {
-    const el = document.getElementById(targetId);
-    if (el) el.style.display = 'block';
-  }
-
-  const pct = ((n - 1) / (totalSteps - 1)) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = 'Korak ' + n + ' od ' + totalSteps;
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  prikaziStranicu('stranica5svadba');
+  updateProgress(5, 5);
 }
 
 function posalji() {
   const isSvadba = selectedProslava === 'svadba';
-  const imeEl = isSvadba ? document.getElementById('ime5') : document.getElementById('ime');
-  const telefonEl = isSvadba ? document.getElementById('telefon5') : document.getElementById('telefon');
-  const emailEl = isSvadba ? document.getElementById('email5') : document.getElementById('email');
-
-  const ime = imeEl ? imeEl.value.trim() : '';
-  const telefon = telefonEl ? telefonEl.value.trim() : '';
-  const email = emailEl ? emailEl.value.trim() : '';
+  const sufiks = isSvadba ? '5' : '';
+  const ime = document.getElementById('ime' + sufiks).value.trim();
+  const telefon = document.getElementById('telefon' + sufiks).value.trim();
+  const email = document.getElementById('email' + sufiks).value.trim();
   let ok = true;
-
-  const errIme = isSvadba ? 'err-ime5' : 'err-ime';
-  const errTel = isSvadba ? 'err-telefon5' : 'err-telefon';
-  const errEmail = isSvadba ? 'err-email5' : 'err-email';
-
-  if (!ime) { document.getElementById(errIme).style.display = 'block'; ok = false; } else document.getElementById(errIme).style.display = 'none';
-  if (!telefon) { document.getElementById(errTel).style.display = 'block'; ok = false; } else document.getElementById(errTel).style.display = 'none';
-  if (!email || !email.includes('@')) { document.getElementById(errEmail).style.display = 'block'; ok = false; } else document.getElementById(errEmail).style.display = 'none';
+  if (!ime) { document.getElementById('err-ime' + sufiks).style.display = 'block'; ok = false; } else document.getElementById('err-ime' + sufiks).style.display = 'none';
+  if (!telefon) { document.getElementById('err-telefon' + sufiks).style.display = 'block'; ok = false; } else document.getElementById('err-telefon' + sufiks).style.display = 'none';
+  if (!email || !email.includes('@')) { document.getElementById('err-email' + sufiks).style.display = 'block'; ok = false; } else document.getElementById('err-email' + sufiks).style.display = 'none';
   if (!ok) return;
 
-  let uslugeArr = Array.from(document.querySelectorAll('input[name="usluga"]:checked')).map(u => u.value);
-  uslugeArr.unshift('foto_svadba'); // Restoran uvek uključen za svadbu
-  const usluge = uslugeArr.join(', ');
+  let uslugeArr = Array.from(document.querySelectorAll('input[name="usluga"]:checked')).map(function(u) { return u.value; });
+  if (isSvadba) uslugeArr.unshift('foto_svadba');
   const sesnSvadba = document.querySelector('input[name="sesn_svadba"]:checked');
   const brGostiju = document.getElementById('broj-gostiju') ? document.getElementById('broj-gostiju').value : '';
-  const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_' + selectedProslava + '"]:checked') ||
-                     document.querySelector('input[name="lokacija_sesn_maturanti"]:checked') ||
-                     document.querySelector('input[name="lokacija_sesn_svadba"]:checked');
-  const lokacija = lokacijaEl ? lokacijaEl.value : '';
-  const prodajaEl = document.querySelector('input[name="prodaja_' + selectedProslava + '"]:checked');
-  const prodaja = prodajaEl ? prodajaEl.value : '';
-  const vencanjeTip = Array.from(document.querySelectorAll('input[name="vencanje_tip"]:checked')).map(v => v.value).join(', ');
+  const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_"]:checked');
+  const prodajaEl = document.querySelector('input[name^="prodaja_"]:checked');
+  const vencanjeTip = Array.from(document.querySelectorAll('input[name="vencanje_tip"]:checked')).map(function(v) { return v.value; }).join(', ');
 
-  const aktivniStep = isSvadba ? document.getElementById('step5svadba') : document.getElementById('step3');
-  if (aktivniStep) aktivniStep.style.display = 'none';
-  document.getElementById('loadingScreen').style.display = 'block';
+  prikaziStranicu('loadingScreen');
 
   const params = new URLSearchParams({
-    action: 'nova_prijava',
-    proslava: selectedProslava,
+    action: 'nova_prijava', proslava: selectedProslava,
     datum: document.getElementById('datum').value,
-    usluge: usluge,
+    usluge: uslugeArr.join(', '),
     sesn_svadba: sesnSvadba ? sesnSvadba.value : '',
     broj_gostiju: brGostiju,
-    lokacija_sesn: lokacija,
-    prodaja_fotografija: prodaja,
+    lokacija_sesn: lokacijaEl ? lokacijaEl.value : '',
+    prodaja_fotografija: prodajaEl ? prodajaEl.value : '',
     vencanje_tip: vencanjeTip,
-    ime: ime,
-    telefon: telefon,
-    email: email,
-    popust: POPUST
+    ime: ime, telefon: telefon, email: email, popust: POPUST
   });
 
   const img = new Image();
   img.src = WEB_APP_URL + '?' + params.toString();
-  img.onload = img.onerror = function() {
-    document.getElementById('loadingScreen').style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
-  };
-  setTimeout(() => {
-    document.getElementById('loadingScreen').style.display = 'none';
-    document.getElementById('successScreen').style.display = 'block';
-  }, 3000);
+  img.onload = img.onerror = function() { prikaziStranicu('successScreen'); };
+  setTimeout(function() { prikaziStranicu('successScreen'); }, 3000);
 }
+
+// Init
+popuniLokacije();
 </script>
 </body>
 </html>
