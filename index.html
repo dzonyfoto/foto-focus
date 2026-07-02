@@ -640,7 +640,8 @@ function posalji() {
   if (!ok) return;
 
   let uslugeArr = Array.from(document.querySelectorAll('input[name="usluga"]:checked')).map(function(u) { return u.value; });
-  if (isSvadba) uslugeArr.unshift('foto_svadba');
+  const imaPaket = uslugeArr.indexOf('foto_video_svadba') !== -1;
+  if (isSvadba && !imaPaket) uslugeArr.unshift('foto_svadba');
   const sesnSvadba = document.querySelector('input[name="sesn_svadba"]:checked');
   const brGostiju = document.getElementById('broj-gostiju') ? document.getElementById('broj-gostiju').value : '';
   const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_"]:checked');
