@@ -201,6 +201,13 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
         <div class="options-list" id="lok-lista-kr"></div>
         <div class="error-msg" id="err-lokacija-kr">Molimo izaberite lokaciju.</div>
       </div>
+      <div class="field">
+        <label class="field-label">Da li želite prodaju fotografija gostima na dan proslave?</label>
+        <div class="options-list">
+          <label class="option-item"><input type="radio" name="prodaja_krstenje_rodjendan" value="da"><span class="option-label">Da</span></label>
+          <label class="option-item"><input type="radio" name="prodaja_krstenje_rodjendan" value="ne" onchange="showNapomena('krstenje_rodjendan')"><span class="option-label">Ne <span id="napomena-prodaja-krstenje_rodjendan" style="color:#aaa;font-size:12px;display:none;">(utiče na povećanje cene)</span></span></label>
+        </div>
+      </div>
     </div>
   </div>
 
