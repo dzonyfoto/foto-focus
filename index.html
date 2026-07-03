@@ -88,13 +88,13 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
       <label class="field-label">Izaberite vrstu proslave <span class="req">*</span></label>
       <div class="proslava-grid">
         <div class="proslava-btn" onclick="selectProslava('krstenje',this)"><div class="icon">⛪</div><div class="naziv">Krštenje</div></div>
-        <div class="proslava-btn" onclick="selectProslava('vencanje',this)"><div class="icon">💍</div><div class="naziv">Venčanje</div></div>
         <div class="proslava-btn" onclick="selectProslava('rodjendan1',this)"><div class="icon">🎂</div><div class="naziv">1. Rođendan</div></div>
         <div class="proslava-btn" onclick="selectProslava('krstenje_rodjendan',this)"><div class="icon">⛪🎂</div><div class="naziv">Krštenje + 1. Rođendan</div></div>
         <div class="proslava-btn" onclick="selectProslava('rodjendan18',this)"><div class="icon">🎉</div><div class="naziv">18. Rođendan</div></div>
-        <div class="proslava-btn" onclick="selectProslava('matura',this)"><div class="icon">🎓</div><div class="naziv">Matura</div></div>
-        <div class="proslava-btn" onclick="selectProslava('sesn_maturanti',this)"><div class="icon">📸</div><div class="naziv">Fotografisanje maturanata</div></div>
+        <div class="proslava-btn" onclick="selectProslava('vencanje',this)"><div class="icon">💍</div><div class="naziv">Venčanje</div></div>
         <div class="proslava-btn" onclick="selectProslava('svadba',this)"><div class="icon">💒</div><div class="naziv">Svadba</div></div>
+        <div class="proslava-btn" onclick="selectProslava('sesn_maturanti',this)"><div class="icon">📸</div><div class="naziv">Fotografisanje maturanata</div></div>
+        <div class="proslava-btn" onclick="selectProslava('matura',this)"><div class="icon">🎓</div><div class="naziv">Matura</div></div>
       </div>
       <div class="error-msg" id="err-proslava">Molimo izaberite vrstu proslave.</div>
     </div>
@@ -446,6 +446,13 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   <p style="font-size:14px;color:var(--gray);line-height:1.7;">Hvala Vam na interesovanju.<br>Uskoro ćete dobiti ponudu na email.<br><br>Za sva pitanja:<br><strong>Nikola – 064 0 57 97 87</strong></p>
 </div>
 
+<!-- LOCK - prikazuje se ako je isti uređaj/browser već poslao upit u poslednja 48h -->
+<div class="wrap" id="lockScreen" style="display:none;text-align:center;padding:50px 20px;background:white;border-radius:12px;">
+  <div style="font-size:60px;margin-bottom:16px;">⏳</div>
+  <h2 style="font-size:22px;font-weight:700;margin-bottom:10px;">Upit je već poslat</h2>
+  <p style="font-size:14px;color:var(--gray);line-height:1.7;">Vaš upit je nedavno primljen. Uskoro ćete dobiti ponudu na email.<br><br>Ako želite da pošaljete novi upit, možete ponovo popuniti formu za <strong id="lockPreostalo">–</strong>.<br><br>Za hitna pitanja:<br><strong>Nikola – 064 0 57 97 87</strong></p>
+</div>
+
 <div class="footer">© 2025 Foto Focus Niš · <a href="https://www.instagram.com/foto.focus.nis/" target="_blank" style="color:var(--green);">@foto.focus.nis</a></div>
 
 <script>
@@ -493,7 +500,7 @@ document.addEventListener('change', function(e) {
 });
 
 // Sve stranice
-const SVE_STRANICE = ['stranica1','stranica2','stranica3','stranica3svadba','stranica4svadba','stranica5svadba','loadingScreen','successScreen'];
+const SVE_STRANICE = ['stranica1','stranica2','stranica3','stranica3svadba','stranica4svadba','stranica5svadba','loadingScreen','successScreen','lockScreen'];
 
 function prikaziStranicu(id) {
   SVE_STRANICE.forEach(function(s) {
@@ -676,6 +683,7 @@ function posalji() {
   if (crkvenoEl) uslugeArr.push('crkva_svadba');
   if (gradjanskoEl && gradjanskoEl.value === 'gradjansko_van') uslugeArr.push('opstina_svadba');
 
+  localStorage.setItem('fotofocus_last_submit', Date.now().toString());
   prikaziStranicu('loadingScreen');
 
   const params = new URLSearchParams({
@@ -696,8 +704,28 @@ function posalji() {
   setTimeout(function() { prikaziStranicu('successScreen'); }, 3000);
 }
 
+// Provera da li je ovaj browser/uređaj već poslao upit u poslednja 48h
+function proveriLock() {
+  const CEKANJE_MS = 48 * 60 * 60 * 1000; // 48 sati
+  const poslednje = localStorage.getItem('fotofocus_last_submit');
+  if (!poslednje) return false;
+  const proslo = Date.now() - parseInt(poslednje);
+  if (proslo >= CEKANJE_MS) return false;
+
+  const preostaloMs = CEKANJE_MS - proslo;
+  const preostaloH = Math.floor(preostaloMs / (60 * 60 * 1000));
+  const preostaloMin = Math.floor((preostaloMs % (60 * 60 * 1000)) / (60 * 1000));
+  const tekst = preostaloH > 0 ? (preostaloH + ' h ' + preostaloMin + ' min') : (preostaloMin + ' min');
+  const el = document.getElementById('lockPreostalo');
+  if (el) el.textContent = tekst;
+  prikaziStranicu('lockScreen');
+  return true;
+}
+
 // Init
-popuniLokacije();
+if (!proveriLock()) {
+  popuniLokacije();
+}
 </script>
 </body>
 </html>
