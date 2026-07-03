@@ -380,8 +380,13 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
     <button class="btn btn-back" onclick="prikaziStranicu('stranica2')">← Nazad</button>
     <button class="btn btn-next" onclick="posalji()">📩 Pošalji upit</button>
   </div>
-  <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.7;">
-    Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama. Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde. Kapara se ne vraća u slučaju otkaza od strane klijenta. U slučaju otkaza od strane fotografa, kapara se vraća u celosti. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom ili događajima koji nisu navedeni u upitu. Isporuka materijala: do 30 dana. Link sa fotografijama aktivan 30 dana. Ovaj dokument je informativnog karaktera i ne predstavlja pravno obavezujući ugovor.
+  <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.8;">
+    Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama.<br><br>
+    Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde.<br><br>
+    Kapara se ne vraća u slučaju otkaza od strane klijenta. U slučaju otkaza od strane fotografa, kapara se vraća u celosti.<br><br>
+    Fotograf ne odgovara za propuste uzrokovane lošom organizacijom ili događajima koji nisu navedeni u upitu.<br><br>
+    Isporuka materijala: do 30 dana. Link sa fotografijama aktivan 30 dana.<br><br>
+    Ovaj dokument je informativnog karaktera i ne predstavlja pravno obavezujući ugovor.
   </p>
 </div>
 
@@ -414,8 +419,12 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
     <button class="btn btn-back" onclick="prikaziStranicu('stranica4svadba')">← Nazad</button>
     <button class="btn btn-next" onclick="posalji()">📩 Pošalji upit</button>
   </div>
-  <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.7;">
-    Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama. Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde. Kapara se ne vraća u slučaju otkaza od strane klijenta. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom. Isporuka materijala: do 30 dana. Ovaj dokument je informativnog karaktera.
+  <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.8;">
+    Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama.<br><br>
+    Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde.<br><br>
+    Kapara se ne vraća u slučaju otkaza od strane klijenta. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom.<br><br>
+    Isporuka materijala: do 30 dana.<br><br>
+    Ovaj dokument je informativnog karaktera.
   </p>
 </div>
 
@@ -640,8 +649,12 @@ function posalji() {
   if (!ok) return;
 
   let uslugeArr = Array.from(document.querySelectorAll('input[name="usluga"]:checked')).map(function(u) { return u.value; });
+
+  // Osnovno fotografisanje svadbe (restoran, 300€) se dodaje samo ako klijent NIJE izabrao Foto+Video paket
+  // (paket već uključuje fotografisanje, pa se ne dodaje duplo)
   const imaPaket = uslugeArr.indexOf('foto_video_svadba') !== -1;
   if (isSvadba && !imaPaket) uslugeArr.unshift('foto_svadba');
+
   const sesnSvadba = document.querySelector('input[name="sesn_svadba"]:checked');
   const brGostiju = document.getElementById('broj-gostiju') ? document.getElementById('broj-gostiju').value : '';
   const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_"]:checked');
