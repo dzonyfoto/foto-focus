@@ -302,11 +302,16 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   <div class="card">
     <div class="card-title">💍 Vrsta venčanja</div>
     <div class="field">
-      <label class="field-label">Izaberite vrstu venčanja</label>
+      <label class="field-label">Crkveno venčanje</label>
       <div class="options-list">
-        <label class="option-item"><input type="checkbox" name="vencanje_tip" value="crkveno"><span class="option-label">Crkveno venčanje</span></label>
-        <label class="option-item"><input type="checkbox" name="vencanje_tip" value="gradjansko_van"><span class="option-label">Građansko venčanje van restorana</span></label>
-        <label class="option-item"><input type="checkbox" name="vencanje_tip" value="gradjansko_restoran"><span class="option-label">Građansko venčanje u restoranu</span></label>
+        <label class="option-item"><input type="checkbox" name="vencanje_crkveno" value="crkveno"><span class="option-label">Da, imamo crkveno venčanje</span></label>
+      </div>
+    </div>
+    <div class="field">
+      <label class="field-label">Građansko venčanje <span style="color:#aaa;font-weight:400;">(izaberite jednu opciju, ako je primenjivo)</span></label>
+      <div class="options-list">
+        <label class="option-item"><input type="radio" name="gradjansko_tip" value="gradjansko_van"><span class="option-label">Van restorana</span></label>
+        <label class="option-item"><input type="radio" name="gradjansko_tip" value="gradjansko_restoran"><span class="option-label">U restoranu</span></label>
       </div>
     </div>
   </div>
@@ -659,7 +664,12 @@ function posalji() {
   const brGostiju = document.getElementById('broj-gostiju') ? document.getElementById('broj-gostiju').value : '';
   const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_"]:checked');
   const prodajaEl = document.querySelector('input[name^="prodaja_"]:checked');
-  const vencanjeTip = Array.from(document.querySelectorAll('input[name="vencanje_tip"]:checked')).map(function(v) { return v.value; }).join(', ');
+  const vencanjeArr = [];
+  const crkvenoEl = document.querySelector('input[name="vencanje_crkveno"]:checked');
+  if (crkvenoEl) vencanjeArr.push(crkvenoEl.value);
+  const gradjanskoEl = document.querySelector('input[name="gradjansko_tip"]:checked');
+  if (gradjanskoEl) vencanjeArr.push(gradjanskoEl.value);
+  const vencanjeTip = vencanjeArr.join(', ');
 
   prikaziStranicu('loadingScreen');
 
