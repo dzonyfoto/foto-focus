@@ -671,6 +671,11 @@ function posalji() {
   if (gradjanskoEl) vencanjeArr.push(gradjanskoEl.value);
   const vencanjeTip = vencanjeArr.join(', ');
 
+  // Crkveno venčanje (+30€) i Građansko van restorana (+30€) se dodaju u obračun cene.
+  // Građansko u restoranu je besplatno i ne dodaje se u usluge.
+  if (crkvenoEl) uslugeArr.push('crkva_svadba');
+  if (gradjanskoEl && gradjanskoEl.value === 'gradjansko_van') uslugeArr.push('opstina_svadba');
+
   prikaziStranicu('loadingScreen');
 
   const params = new URLSearchParams({
