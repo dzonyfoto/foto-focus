@@ -280,8 +280,9 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
       <div class="card-title">📸 Usluge – Svadba</div>
       <div class="notice">Fotografisanje proslave u restoranu je uvek uključeno u osnovnu cenu.</div>
       <div class="field">
-        <label class="field-label">Dodatne usluge (opciono)</label>
+        <label class="field-label">Izaberite usluge</label>
         <div class="options-list">
+          <label class="option-item selected" style="opacity:0.7;cursor:default;"><input type="checkbox" checked disabled><span class="option-label">Fotografisanje (uvek uključeno)</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="video_svadba" id="cb-video-svadba" onchange="svadbaSync(this)"><span class="option-label">Video snimanje</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="foto_video_svadba" id="cb-fotovideo-svadba" onchange="svadbaSync(this)"><span class="option-label">Foto + Video paket</span></label>
         </div>
