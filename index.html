@@ -457,6 +457,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
 
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwC-VoIbGp_8aXSZ98A4mEfLEVYrIRdsEDFjEVpTfngf7cvas0rgPl77o03qzOGi-A/exec";
+const LOCK_ENABLED = false; // postavi na true da vratiš 48h zaključavanje forme
 const urlParams = new URLSearchParams(window.location.search);
 const POPUST = parseInt(urlParams.get('p')) || 0;
 let selectedProslava = null;
@@ -710,6 +711,7 @@ function posalji() {
 // dzonyfoto.github.io/foto-focus?reset=1 ili ...?p=25&reset=1) ako klijent
 // treba da popuni ponovo pre isteka 48h.
 function proveriLock() {
+  if (!LOCK_ENABLED) return false;
   if (urlParams.get('reset') === '1') return false;
 
   const CEKANJE_MS = 48 * 60 * 60 * 1000; // 48 sati
