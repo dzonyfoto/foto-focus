@@ -122,7 +122,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
         <div class="options-list">
           <label class="option-item"><input type="checkbox" name="usluga" value="foto_krstenje"><span class="option-label">Fotografisanje</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="video_krstenje"><span class="option-label">Video snimanje</span></label>
-          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_krstenje" onchange="toggleLokacija('krstenje',this.checked)"><span class="option-label">Foto sesija</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_krstenje" onchange="toggleLokacija('krstenje',this.checked)"><span class="option-label">Foto sesija (10-15 min)</span></label>
         </div>
         <div class="error-msg" id="err-usluge-krstenje">Molimo izaberite bar jednu uslugu.</div>
       </div>
@@ -143,7 +143,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
         <div class="options-list">
           <label class="option-item"><input type="checkbox" name="usluga" value="foto_vencanje"><span class="option-label">Fotografisanje</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="video_vencanje"><span class="option-label">Video snimanje</span></label>
-          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_vencanje" onchange="toggleLokacija('vencanje',this.checked)"><span class="option-label">Foto sesija</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_vencanje" onchange="toggleLokacija('vencanje',this.checked)"><span class="option-label">Foto sesija (10-15 min)</span></label>
         </div>
         <div class="error-msg" id="err-usluge-vencanje">Molimo izaberite bar jednu uslugu.</div>
       </div>
@@ -164,7 +164,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
         <div class="options-list">
           <label class="option-item"><input type="checkbox" name="usluga" value="foto_rodjendan1"><span class="option-label">Fotografisanje</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="video_rodjendan1"><span class="option-label">Video snimanje</span></label>
-          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan1" onchange="toggleLokacija('rodjendan1',this.checked)"><span class="option-label">Foto sesija</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan1" onchange="toggleLokacija('rodjendan1',this.checked)"><span class="option-label">Foto sesija (10-15 min)</span></label>
         </div>
         <div class="error-msg" id="err-usluge-rodjendan1">Molimo izaberite bar jednu uslugu.</div>
       </div>
@@ -192,7 +192,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
         <div class="options-list">
           <label class="option-item"><input type="checkbox" name="usluga" value="foto_kr"><span class="option-label">Fotografisanje</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="video_kr"><span class="option-label">Video snimanje</span></label>
-          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_kr" onchange="toggleLokacija('kr',this.checked)"><span class="option-label">Foto sesija</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_kr" onchange="toggleLokacija('kr',this.checked)"><span class="option-label">Foto sesija (10-15 min)</span></label>
         </div>
         <div class="error-msg" id="err-usluge-krstenje_rodjendan">Molimo izaberite bar jednu uslugu.</div>
       </div>
@@ -220,7 +220,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
         <div class="options-list">
           <label class="option-item"><input type="checkbox" name="usluga" value="foto_rodjendan18"><span class="option-label">Fotografisanje</span></label>
           <label class="option-item"><input type="checkbox" name="usluga" value="video_rodjendan18"><span class="option-label">Video snimanje</span></label>
-          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan18" onchange="toggleLokacija('rodjendan18',this.checked)"><span class="option-label">Foto sesija</span></label>
+          <label class="option-item"><input type="checkbox" name="usluga" value="sesn_rodjendan18" onchange="toggleLokacija('rodjendan18',this.checked)"><span class="option-label">Foto sesija (10-15 min)</span></label>
         </div>
         <div class="error-msg" id="err-usluge-rodjendan18">Molimo izaberite bar jednu uslugu.</div>
       </div>
@@ -339,8 +339,8 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
       <label class="field-label">Da li želite foto sesiju? <span class="req">*</span></label>
       <div class="options-list">
         <label class="option-item"><input type="radio" name="sesn_svadba" value="ne"><span class="option-label">Ne želim foto sesiju</span></label>
-        <label class="option-item"><input type="radio" name="sesn_svadba" value="isti_dan" onchange="toggleLokacija('svadba',false)"><span class="option-label">Da – istog dana (besplatno)</span></label>
-        <label class="option-item"><input type="radio" name="sesn_svadba" value="drugi_dan" onchange="toggleLokacija('svadba',true)"><span class="option-label">Da – drugog dana</span></label>
+        <label class="option-item"><input type="radio" name="sesn_svadba" value="isti_dan" onchange="toggleLokacija('svadba',false)"><span class="option-label">Da – istog dana, 10-15 min (besplatno)</span></label>
+        <label class="option-item"><input type="radio" name="sesn_svadba" value="drugi_dan" onchange="toggleLokacija('svadba',true)"><span class="option-label">Da – drugog dana, 10-15 min</span></label>
       </div>
       <div class="error-msg" id="err-sesn-svadba">Molimo izaberite opciju za foto sesiju.</div>
     </div>
