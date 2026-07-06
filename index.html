@@ -482,7 +482,12 @@ function popuniLokacije() {
     if (!el) return;
     const ime = 'lokacija_sesn_' + tip;
     el.innerHTML = LOKACIJE.map(function(l) {
-      return '<label class="option-item"><input type="radio" name="' + ime + '" value="' + l.v + '"><span class="option-label">' + l.t + '</span></label>';
+      let html = '<label class="option-item"><input type="radio" name="' + ime + '" value="' + l.v + '" onchange="toggleDrugaLokacija(\'' + tip + '\')"><span class="option-label">' + l.t + '</span></label>';
+      // Kad klijent izabere "Druga lokacija u Nišu", odmah ispod se prikazuje polje za tačnu lokaciju.
+      if (l.v === 'drugo_nis') {
+        html += '<input type="text" id="lok-drugo-' + tip + '" placeholder="Upišite tačnu lokaciju u Nišu (npr. park kod...)" style="display:none;width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:\'Inter\',sans-serif;font-size:14px;color:var(--gray-dark);">';
+      }
+      return html;
     }).join('');
   });
 }
@@ -528,6 +533,29 @@ function selectProslava(tip, el) {
 function toggleLokacija(tip, prikazati) {
   const el = document.getElementById('lokacija-' + tip);
   if (el) el.style.display = prikazati ? 'block' : 'none';
+}
+
+// Prikazuje/sakriva polje za tačnu lokaciju kada je izabrana "Druga lokacija u Nišu".
+function toggleDrugaLokacija(tip) {
+  const sel = document.querySelector('input[name="lokacija_sesn_' + tip + '"]:checked');
+  const input = document.getElementById('lok-drugo-' + tip);
+  if (!input) return;
+  const prikazi = sel && sel.value === 'drugo_nis';
+  input.style.display = prikazi ? 'block' : 'none';
+  if (!prikazi) input.value = '';
+}
+
+// Vraća true ako je lokacija validno izabrana. Ako je izabrana "Druga lokacija u Nišu",
+// tekstualno polje mora biti popunjeno. Usput postavlja odgovarajuću poruku o grešci.
+function validirajLokaciju(tip) {
+  const errEl = document.getElementById('err-lokacija-' + tip) || document.getElementById('err-usluge-' + tip);
+  const sel = document.querySelector('input[name="lokacija_sesn_' + tip + '"]:checked');
+  if (!sel) { if (errEl) errEl.textContent = 'Molimo izaberite lokaciju.'; return false; }
+  if (sel.value === 'drugo_nis') {
+    const input = document.getElementById('lok-drugo-' + tip);
+    if (!input || !input.value.trim()) { if (errEl) errEl.textContent = 'Molimo upišite tačnu lokaciju u Nišu.'; return false; }
+  }
+  return true;
 }
 
 function showNapomena(tip) {
@@ -585,6 +613,7 @@ function idi2() {
     if (item) { item.classList.remove('selected'); item.style.opacity = '1'; }
   });
   const brGost = document.getElementById('broj-gostiju'); if (brGost) brGost.value = '';
+  document.querySelectorAll('[id^="lok-drugo-"]').forEach(function(el) { el.value = ''; el.style.display = 'none'; });
   document.querySelectorAll('[id^="lokacija-"]').forEach(function(el) { el.style.display = 'none'; });
   document.querySelectorAll('[id^="napomena-prodaja-"]').forEach(function(el) { el.style.display = 'none'; });
   document.querySelectorAll('.error-msg').forEach(function(el) { el.style.display = 'none'; });
@@ -601,8 +630,7 @@ function idi3() {
     return;
   }
   if (selectedProslava === 'sesn_maturanti') {
-    const lok = document.querySelector('input[name="lokacija_sesn_sesn_maturanti"]:checked');
-    if (!lok) { document.getElementById('err-usluge-sesn_maturanti').style.display = 'block'; return; }
+    if (!validirajLokaciju('sesn_maturanti')) { document.getElementById('err-usluge-sesn_maturanti').style.display = 'block'; return; }
     document.getElementById('err-usluge-sesn_maturanti').style.display = 'none';
     prikaziStranicu('stranica3');
     updateProgress(3, 3);
@@ -623,7 +651,7 @@ function idi3() {
   const sesnTipovi = ['krstenje','vencanje','rodjendan1','kr','rodjendan18'];
   for (let tip of sesnTipovi) {
     if (document.querySelector('input[value="sesn_' + tip + '"]:checked')) {
-      if (!document.querySelector('input[name="lokacija_sesn_' + tip + '"]:checked')) {
+      if (!validirajLokaciju(tip)) {
         document.getElementById('err-lokacija-' + tip).style.display = 'block'; return;
       }
       document.getElementById('err-lokacija-' + tip).style.display = 'none';
@@ -642,7 +670,7 @@ function idi5svadba() {
   const sesn = document.querySelector('input[name="sesn_svadba"]:checked');
   if (!sesn) { document.getElementById('err-sesn-svadba').style.display = 'block'; return; }
   document.getElementById('err-sesn-svadba').style.display = 'none';
-  if (sesn.value === 'drugi_dan' && !document.querySelector('input[name="lokacija_sesn_svadba"]:checked')) {
+  if (sesn.value === 'drugi_dan' && !validirajLokaciju('svadba')) {
     document.getElementById('err-lokacija-svadba').style.display = 'block'; return;
   }
   document.getElementById('err-lokacija-svadba').style.display = 'none';
@@ -676,6 +704,21 @@ function posalji() {
   const sesnSvadba = document.querySelector('input[name="sesn_svadba"]:checked');
   const brGostiju = document.getElementById('broj-gostiju') ? document.getElementById('broj-gostiju').value : '';
   const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_"]:checked');
+
+  // Lokacija sesije: šaljemo čitljiv naziv (npr. "Tvrđava"), a za "Druga lokacija u Nišu"
+  // dodajemo tačan tekst koji je klijent uneo. ('|' se čisti jer razdvaja delove u komentaru backend-a.)
+  let lokacijaVal = '';
+  if (lokacijaEl) {
+    const lokObj = LOKACIJE.find(function(l) { return l.v === lokacijaEl.value; });
+    lokacijaVal = lokObj ? lokObj.t : lokacijaEl.value;
+    if (lokacijaEl.value === 'drugo_nis') {
+      const tipLok = lokacijaEl.name.replace('lokacija_sesn_', '');
+      const drugoInput = document.getElementById('lok-drugo-' + tipLok);
+      const tekst = drugoInput ? drugoInput.value.trim().replace(/\|/g, '/') : '';
+      if (tekst) lokacijaVal = 'Druga lokacija u Nišu – ' + tekst;
+    }
+  }
+
   const prodajaEl = document.querySelector('input[name^="prodaja_"]:checked');
   const vencanjeArr = [];
   const crkvenoEl = document.querySelector('input[name="vencanje_crkveno"]:checked');
@@ -698,7 +741,7 @@ function posalji() {
     usluge: uslugeArr.join(', '),
     sesn_svadba: sesnSvadba ? sesnSvadba.value : '',
     broj_gostiju: brGostiju,
-    lokacija_sesn: lokacijaEl ? lokacijaEl.value : '',
+    lokacija_sesn: lokacijaVal,
     prodaja_fotografija: prodajaEl ? prodajaEl.value : '',
     vencanje_tip: vencanjeTip,
     ime: ime, telefon: telefon, email: email, popust: POPUST
