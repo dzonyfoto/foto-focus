@@ -386,7 +386,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   </div>
   <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.8;">
     Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama.<br><br>
-    Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde.<br><br>
+    Rezervacija nije važeća bez uplate kapare (30% od ukupne sume). Rok uplate: 3 dana od potvrde.<br><br>
     Kapara se ne vraća u slučaju otkaza od strane klijenta. U slučaju otkaza od strane fotografa, kapara se vraća u celosti.<br><br>
     Fotograf ne odgovara za propuste uzrokovane lošom organizacijom ili događajima koji nisu navedeni u upitu.<br><br>
     Isporuka materijala: do 30 dana. Link sa fotografijama aktivan 30 dana.<br><br>
@@ -425,7 +425,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   </div>
   <p style="font-size:10px;color:#bbb;text-align:center;margin-top:14px;line-height:1.8;">
     Slanjem upita prihvatate da Foto Focus može koristiti fotografije sa Vaše proslave isključivo u promotivne svrhe na društvenim mrežama.<br><br>
-    Rezervacija nije važeća bez uplate kapare (min. 6.000 din ili 50€). Rok uplate: 3 dana od potvrde.<br><br>
+    Rezervacija nije važeća bez uplate kapare (30% od ukupne sume). Rok uplate: 3 dana od potvrde.<br><br>
     Kapara se ne vraća u slučaju otkaza od strane klijenta. Fotograf ne odgovara za propuste uzrokovane lošom organizacijom.<br><br>
     Isporuka materijala: do 30 dana.<br><br>
     Ovaj dokument je informativnog karaktera.
@@ -452,7 +452,7 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
   <p style="font-size:14px;color:var(--gray);line-height:1.7;">Vaš upit je nedavno primljen. Uskoro ćete dobiti ponudu na email.<br><br>Ako želite da pošaljete novi upit, kontaktirajte nas direktno:<br><br><strong>Nikola – 064 0 57 97 87</strong></p>
 </div>
 
-<div class="footer">© 2025 Foto Focus Niš · <a href="https://www.instagram.com/foto.focus.nis/" target="_blank" style="color:var(--green);">@foto.focus.nis</a></div>
+<div class="footer">© <span id="footerGodina">2025</span> Foto Focus Niš · <a href="https://www.instagram.com/foto.focus.nis/" target="_blank" style="color:var(--green);">@foto.focus.nis</a></div>
 
 <script>
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwC-VoIbGp_8aXSZ98A4mEfLEVYrIRdsEDFjEVpTfngf7cvas0rgPl77o03qzOGi-A/exec";
@@ -572,9 +572,22 @@ function idi2() {
   if (!selectedProslava) { document.getElementById('err-proslava').style.display = 'block'; return; }
   if (!document.getElementById('datum').value) { document.getElementById('err-datum').style.display = 'block'; return; }
   document.getElementById('err-datum').style.display = 'none';
-  // Reset
+  // Reset – čisti SVE izbore sa stranica 2+ da se ne prenesu iz prethodno
+  // izabrane proslave (ranije su ostajali stari sesn/prodaja/venčanje/lokacija izbori).
   document.querySelectorAll('.panel').forEach(function(p) { p.style.display = 'none'; });
-  document.querySelectorAll('input[name="usluga"]').forEach(function(c) { c.checked = false; c.disabled = false; c.closest('.option-item').classList.remove('selected'); c.closest('.option-item').style.opacity = '1'; });
+  document.querySelectorAll('#stranica2 input, #stranica3svadba input, #stranica4svadba input').forEach(function(c) {
+    if (c.type !== 'checkbox' && c.type !== 'radio') return;
+    // Preskoči "Fotografisanje (uvek uključeno)" polje svadbe – ono ostaje trajno čekirano/zamrznuto.
+    if (c.disabled && c.hasAttribute('checked')) return;
+    c.checked = false;
+    c.disabled = false;
+    const item = c.closest('.option-item');
+    if (item) { item.classList.remove('selected'); item.style.opacity = '1'; }
+  });
+  const brGost = document.getElementById('broj-gostiju'); if (brGost) brGost.value = '';
+  document.querySelectorAll('[id^="lokacija-"]').forEach(function(el) { el.style.display = 'none'; });
+  document.querySelectorAll('[id^="napomena-prodaja-"]').forEach(function(el) { el.style.display = 'none'; });
+  document.querySelectorAll('.error-msg').forEach(function(el) { el.style.display = 'none'; });
   const panel = document.getElementById('panel-' + selectedProslava);
   if (panel) panel.style.display = 'block';
   prikaziStranicu('stranica2');
@@ -656,6 +669,10 @@ function posalji() {
   const imaPaket = uslugeArr.indexOf('foto_video_svadba') !== -1;
   if (isSvadba && !imaPaket) uslugeArr.unshift('foto_svadba');
 
+  // Fotografisanje maturanata: u panelu se bira SAMO lokacija (nema checkbox-a za uslugu),
+  // pa se šifra usluge mora dodati ovde — inače cena (30€) ne bi ušla u ponudu.
+  if (selectedProslava === 'sesn_maturanti') uslugeArr.push('sesn_maturanti');
+
   const sesnSvadba = document.querySelector('input[name="sesn_svadba"]:checked');
   const brGostiju = document.getElementById('broj-gostiju') ? document.getElementById('broj-gostiju').value : '';
   const lokacijaEl = document.querySelector('input[name^="lokacija_sesn_"]:checked');
@@ -713,6 +730,8 @@ function proveriLock() {
 }
 
 // Init
+const godEl = document.getElementById('footerGodina');
+if (godEl) godEl.textContent = new Date().getFullYear();
 if (!proveriLock()) {
   popuniLokacije();
 }
