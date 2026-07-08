@@ -458,7 +458,10 @@ input:focus { outline: none; border-color: var(--green); box-shadow: 0 0 0 3px r
 const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwC-VoIbGp_8aXSZ98A4mEfLEVYrIRdsEDFjEVpTfngf7cvas0rgPl77o03qzOGi-A/exec";
 const LOCK_ENABLED = false; // postavi na true da vratiš 48h zaključavanje forme
 const urlParams = new URLSearchParams(window.location.search);
-const POPUST = parseInt(urlParams.get('p')) || 0;
+// Popust se prima samo iz linka i sme biti isključivo 0, 25 ili 50 (sve ostalo → 0).
+const DOZVOLJENI_POPUSTI = [0, 25, 50];
+const _popustRaw = parseInt(urlParams.get('p')) || 0;
+const POPUST = DOZVOLJENI_POPUSTI.indexOf(_popustRaw) !== -1 ? _popustRaw : 0;
 let selectedProslava = null;
 
 // Lokacije
